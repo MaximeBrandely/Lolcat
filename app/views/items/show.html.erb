@@ -1,0 +1,61 @@
+
+
+<div class="container mb-5">
+  <div class="row justify-content-around">
+    <div class="col-lg-7">
+
+      <div class="card mt-4">
+       <%= image_tag(@item.image_url, size:"900x350", alt:'image '+@item.id.to_s, class:'card-img-top img-fluid') %>
+        <div class="card-body">
+          <h3 class="card-title"><%= @item.title%> </h3>
+          <h4><%= @item.price %></h4>
+          <p class="card-text"> <%= @item.description%></p>
+          <span class="text-warning"> &#128008; &#128008; &#128008; &#128008;</span>
+          noté 4 cats
+        </div><!-- /.card-body -->
+        </div><!-- /.card-mt-4 -->
+      </div><!-- /.col-lg-8 -->
+
+    <div class="col-lg-4">
+      <div class="card mt-4">
+      <div class="btn-group-vertical">
+        <%= link_to "Retour au catalogue", root_path, class:"btn btn-outline-primary" %>
+        <% if user_signed_in? %>
+          <%= link_to "Ajouter au panier", add_item_path(@item.id), :method => "post", class:"btn btn-success" %>
+        <% else %>
+          <%= link_to "Acheter", new_user_registration_path, class:"btn btn-success" %>
+        <% end %>
+      </div>
+      </div>
+
+      <div class="card mt-4">
+          <h5 class="card-header">Catégories</h5>
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Kromignon</a>
+                  </li>
+                  <li>
+                    <a href="#">Kikou</a>
+                  </li>
+                  <li>
+                    <a href="#">Lol</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+      </div>
+
+    </div>
+    <!-- /.col-lg-4 -->
+
+
+    </div>
+  </div>
+</div>
+<!-- /.container -->

@@ -1,0 +1,51 @@
+<h1>Commandes</h1>
+
+
+  <div class="well">
+  <div class="row">
+  	<table class="table-responsive table-hover m-3">
+  		<tr>
+  			<th class="col-lg-2 text-center">Date</th>
+  			<th class="col-lg-2 text-center">Total</th>
+  			<th class="col-lg-2 text-center">Nombre d'items</th>
+  			<th class="col-lg-2 text-center">Statut</th>
+  			<th class="col-lg-2 text-center">Payé ?</th>
+  		</tr>
+
+      <% @orders.each do |order| %>
+
+  		<tr>
+  			<td class="text-center"><%= order.created_at %></td>
+        <td class="text-center"><%= order.total %></td>
+  			<td class="text-center"><%= order.items.length %></td>
+  			<td class="text-center"><%= order.status %></td>
+  	    <td class="text-center"><%= form_tag charges_path do %>
+			<article>
+				<% if flash[:error].present? %>
+					<div id="error_explanation">
+						<p>
+							<%= flash[:error] %>
+						</p>
+					</div>
+					<% end %>
+						<label class="amount">
+							<span><%= order.compute_total(order) %></span>
+						</label>
+			</article>
+
+			<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="@description"
+              data-amount="@amount"
+              data-locale="auto"></script>
+		<% end %>
+	</td>
+  		</tr>
+
+		<% end %>
+
+
+
+  	</table>
+  </div>
+</div>

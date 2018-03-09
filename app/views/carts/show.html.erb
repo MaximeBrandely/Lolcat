@@ -1,0 +1,35 @@
+<h1>Panier</h1>
+
+
+<div class="well">
+<div class="row">
+	<table class="table-responsive table-hover m-3">
+		<tr>
+			<th class="col-lg-2 text-center">Visuel</th>
+			<th class="col-lg-2 text-center">Titre</th>
+			<th class="col-lg-2 text-center">Prix unitaire</th>
+			<th class="col-lg-2 text-center">Options</th>
+		</tr>
+
+	<% @cart.items.each do |item| %>
+
+		<tr>
+			<td class="text-center"><%= image_tag(item.image_url, height: '100', alt:'product'+item.id.to_s, class:'img-responsive')%></td>
+			<td class="text-center"><%= item.title %></td>
+			<td class="text-center"><%= item.price %>€</td>
+	    <td class="text-center"><%= link_to "Enlever l'article", remove_item_path(item.id), remote:true, :method => "delete", class:"btn-sm btn-danger", :data => {:confirm => "Sûr?",
+	              } %></td>
+		</tr>
+
+	<% end %>
+
+	  <tr>
+	    <td colspan="2"></td>
+	    <td class="text-primary text-center">Total <p class="font-weight-bold"><%= @total %> €</p></td>
+	    <td class="text-center"><a class="btn btn-primary" href="/orders/new">Payer</a></td>
+	  </tr>
+
+
+	</table>
+</div>
+</div>

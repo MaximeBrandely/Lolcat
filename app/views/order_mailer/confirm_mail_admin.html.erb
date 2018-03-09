@@ -1,0 +1,6 @@
+<h1>Nouveau pigeon des chatons !</h1>
+
+Montant de la commande : <%= @order_price %> €
+Date : <%= @order.created_at %>
+
+Féliciter cet utilisateur : <%= mail_to(@user.email, name = nil, html_options = {:subject => "félicitations"}) %>
